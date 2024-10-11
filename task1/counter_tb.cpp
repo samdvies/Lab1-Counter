@@ -11,7 +11,7 @@ int main(int argc, char **argv, char **env) {
     // init top verilog instance
     Vcounter* top = new Vcounter;
     //init trace dump
-    Verilator::traceEverOn(true);
+    Verilated::traceEverOn(true);
     VerilatedVcdC* tfp = new VerilatedVcdC;
     top->trace (tfp,99);
     tfp->open ("counter.vcd");
