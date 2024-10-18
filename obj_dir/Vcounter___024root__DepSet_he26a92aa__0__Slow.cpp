@@ -6,12 +6,21 @@
 
 #include "Vcounter___024root.h"
 
+VL_ATTR_COLD void Vcounter___024root___initial__TOP__0(Vcounter___024root* vlSelf) {
+    if (false && vlSelf) {}  // Prevent unused
+    Vcounter__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vcounter___024root___initial__TOP__0\n"); );
+    // Body
+    vlSelf->del = 1U;
+}
+
 VL_ATTR_COLD void Vcounter___024root___eval_initial(Vcounter___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vcounter__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcounter___024root___eval_initial\n"); );
     // Body
     vlSelf->__Vclklast__TOP__clk = vlSelf->clk;
+    Vcounter___024root___initial__TOP__0(vlSelf);
 }
 
 VL_ATTR_COLD void Vcounter___024root___eval_settle(Vcounter___024root* vlSelf) {
@@ -34,6 +43,6 @@ VL_ATTR_COLD void Vcounter___024root___ctor_var_reset(Vcounter___024root* vlSelf
     vlSelf->clk = VL_RAND_RESET_I(1);
     vlSelf->rst = VL_RAND_RESET_I(1);
     vlSelf->en = VL_RAND_RESET_I(1);
-    vlSelf->del = VL_RAND_RESET_I(8);
+    vlSelf->del = VL_RAND_RESET_I(2);
     vlSelf->count = VL_RAND_RESET_I(8);
 }

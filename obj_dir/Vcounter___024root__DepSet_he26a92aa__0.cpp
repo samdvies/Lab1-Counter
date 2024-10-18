@@ -10,8 +10,27 @@ VL_INLINE_OPT void Vcounter___024root___sequent__TOP__0(Vcounter___024root* vlSe
     if (false && vlSelf) {}  // Prevent unused
     Vcounter__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vcounter___024root___sequent__TOP__0\n"); );
+    // Init
+    CData/*1:0*/ __Vdly__del;
+    CData/*7:0*/ __Vdly__count;
     // Body
-    vlSelf->del = (0xffU & ((IData)(vlSelf->del) - (IData)(1U)));
+    __Vdly__count = vlSelf->count;
+    __Vdly__del = vlSelf->del;
+    if ((0U != (IData)(vlSelf->del))) {
+        __Vdly__del = (3U & ((IData)(vlSelf->del) - (IData)(1U)));
+        if ((0U == (IData)(vlSelf->del))) {
+            __Vdly__count = 0U;
+        }
+    } else if (vlSelf->rst) {
+        __Vdly__count = 0U;
+    } else if ((9U == (IData)(vlSelf->count))) {
+        __Vdly__del = 3U;
+    } else {
+        __Vdly__count = (0xffU & ((IData)(vlSelf->count) 
+                                  + (IData)(vlSelf->en)));
+    }
+    vlSelf->count = __Vdly__count;
+    vlSelf->del = __Vdly__del;
 }
 
 void Vcounter___024root___eval(Vcounter___024root* vlSelf) {
