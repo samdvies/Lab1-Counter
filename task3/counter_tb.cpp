@@ -27,7 +27,6 @@ int main(int argc, char **argv, char **env) {
     top->clk = 1;
     top->rst = 1;
 
-    top->v = vbdValue();
     top->ld = 0;
 
     //run simulation fpr many clock cycles
@@ -39,7 +38,7 @@ int main(int argc, char **argv, char **env) {
             top->eval ();
 
         }
-        
+        top->ld = vbdFlag();
         //send count value to Vbuddy
         vbdPlot(int(top->count), 0, 255);
 
@@ -48,8 +47,7 @@ int main(int argc, char **argv, char **env) {
 
         //change input stimuli
         top->rst = 0;
-        top->v = vbdValue();
-        top->ld = vbdFlag();
+        
         
         if (Verilated::gotFinish()) exit(0);
 
