@@ -22,11 +22,13 @@ int main(int argc, char **argv, char **env) {
     vbdHeader("Lab 1: Counter");
 
     //initialize
+    vbdSetMode(1);
+
     top->clk = 1;
     top->rst = 1;
-    top->en = 0;
-    top->pos = 1;
 
+    top->v = vbdValue();
+    top->ld = 0;
 
     //run simulation fpr many clock cycles
     for (i=0; i<1000; i++) {
@@ -46,8 +48,9 @@ int main(int argc, char **argv, char **env) {
 
         //change input stimuli
         top->rst = 0;
-        top->en = 1;
-        top->pos = vbdFlag();
+        top->v = vbdValue();
+        top->ld = vbdFlag();
+        
         if (Verilated::gotFinish()) exit(0);
 
     }
