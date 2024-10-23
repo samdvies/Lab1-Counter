@@ -15,7 +15,7 @@ int main(int argc, char **argv, char **env) {
     Verilated::traceEverOn(true);
     VerilatedVcdC* tfp = new VerilatedVcdC;
     top->trace (tfp,99);
-    tfp->open ("counter.vcd");
+    tfp->open ("top.vcd");
 
     //init vbuddy
     if (vbdOpen() !=1) return(-1);
@@ -36,9 +36,12 @@ int main(int argc, char **argv, char **env) {
             top->eval ();
 
         }
-        
         //send count value to Vbuddy
-        vbdPlot(int(top->count), 0, 255);
+        vbdHex(4, (int(top->bcd) >> 16) & 0xF);
+        vbdHex(3, (int(top->bcd) >> 8) & 0xF);
+        vbdHex(2, (int(top->bcd) >> 4) & 0xF);
+        vbdHex(1, int(top->bcd) & 0xF);
+
 
         
 
@@ -47,7 +50,7 @@ int main(int argc, char **argv, char **env) {
 
         //change input stimuli
         top->rst = 0;
-        top->en = 1;
+        top->en = vbdFlag();
         if (Verilated::gotFinish()) exit(0);
 
     }
